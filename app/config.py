@@ -1,7 +1,5 @@
 ARCGIS_BASE_URL = 'https://oaiee.scj.gov.co/agc/rest/services'
 
-QUERY = '/query?where=1=1&outFields=*&f=geojson'
-
 """
 LAYERS ArcGIS - Tematicos_Pub:
 Describe las cifras de los delitos de alto (SIEDCO), 
@@ -36,3 +34,5 @@ EQUIP_LOCAL_URL = f'{ARCGIS_BASE_URL}/Tematicos_NR/EquipamientoPMSDSCJ/MapServer
 
 #EQUIP_SC: Equipamientos por Sector Catastral - Layer 30
 EQUIP_SC_URL = f'{ARCGIS_BASE_URL}/Tematicos_NR/EquipamientoPMSDSCJ/MapServer/30'
+
+QUERY = '/query?where=1=1&outFields=*&f=geojson'
