@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 #Router Endpoints
 from routers.dai import DAI_Router
+from routers.irs import IRS_Router
 
 app = FastAPI(
     title='API para Visualización de Datos (Hurtos y Presencia Policial) en Bogotá',
@@ -17,3 +18,4 @@ def root():
     }
 
 app.include_router(DAI_Router)
+app.include_router(IRS_Router)
