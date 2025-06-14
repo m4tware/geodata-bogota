@@ -9,11 +9,11 @@ def generate_map(*gdf_to_map):
         zoom_start = 11.5
     )
 
-    Marker(
-        location = [4.65, -74.1],
-        popup = 'Bogotá',
-        icon = Icon(color='blue')
-    ).add_to(m)
+    #Marker(
+    #    location = [4.65, -74.1],
+    #    popup = 'Bogotá',
+    #    icon = Icon(color='blue')
+    #).add_to(m)
 
     for gdf, tt_fields, tt_aliases, color, layer_name in gdf_to_map:
         fg = FeatureGroup(name = layer_name)
