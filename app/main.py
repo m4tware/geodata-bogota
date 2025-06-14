@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 
 #Router Endpoints
-from routers.dai import DAI_Router
+from routers.cifras import Cifras_Router
+from routers.policia import Policia_Router
 
 app = FastAPI(
     title='API GeoData - Bogotá',
@@ -16,4 +17,5 @@ def root():
         'logos': 'Proyecto abierto a toda la ciudadanía con fines informativos sobre los hurtos en las diferentes localidades de Bogotá teniendo en cuenta los puntos de presencia policial distribuidos por la ciudad'
     }
 
-app.include_router(DAI_Router)
+app.include_router(Cifras_Router)
+app.include_router(Policia_Router)
