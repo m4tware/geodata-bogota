@@ -1,5 +1,23 @@
 ARCGIS_BASE_URL = 'https://oaiee.scj.gov.co/agc/rest/services'
 
+DAI_LAYER = {
+    """
+    Delitos de Alto Impacto (Por Localidades) - Layer 0
+    """
+    'url':      f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0',
+    'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0?f=json',
+    'query':    f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0/query?'
+    }
+
+IRL_LAYER = {
+    """
+    Incidentes Reportados Localidad - Layer 2        
+    """
+    'url':      f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2',
+    'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2?f=json',
+    'query':    f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2/query?'
+    }
+
 """
 LAYERS ArcGIS - Tematicos_Pub:
 Describe las cifras de los delitos de alto (SIEDCO), 
@@ -57,4 +75,32 @@ EQUIP_SC:
 Equipamientos por Sector Catastral - Layer 30
 """
 
-QUERY = '/query?where=1=1&outFields=*&f=geojson'
+QUERY = '/query?where=1=1&outFields=CMIULOCAL,CMNOMLOCAL,CMHP25CONT&f=geojson'
+
+# ----- Temp Global Dict -----#
+""" LAYERS = {
+    'DAI': {
+        #Delitos de Alto Impacto (Por Localidades) - Layer 0
+        'url': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0',
+        'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0?f=json',
+        'query': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0/query?'
+    },
+    'IRL': {
+        #Incidentes Reportados Localidad - Layer 2
+        'url': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2',
+        'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0?f=json',
+        'query': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0/query?'
+    },
+    'CAI': {
+        #Comando de Atención Inmediata - Layer 22
+        'url': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/22',
+        'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/22?f=json',
+        'query': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/22/query?'
+    },
+    'CP': {
+        #Cuadrantes Policia - Layer 25
+        'url': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/25',
+        'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/25?f=json',
+        'query': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/25/query?'
+    }
+} """
