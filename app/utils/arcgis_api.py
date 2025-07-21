@@ -23,7 +23,7 @@ def fetch_data(url, req_dataframe_url = None):
     except Exception.ValueError as e:
         print(f'Error al obtener los datos:{e}')
 
-def get_outfields(metadata_url, outfields_prefix):
+def get_outfields(metadata_url, outfields_prefixes):
     """
     Returns a string with the demanded fields from ArcGIS layer
     - url_metadata: url from LAYERS['layer']['metatada']
@@ -36,7 +36,7 @@ def get_outfields(metadata_url, outfields_prefix):
     meta = get(metadata_url).json()
 
     fields = [f['name'] for f in meta['fields'] 
-        if f['name'].startswith(outfields_prefix)]
+            if any(f['name'].startswith(prefix) for prefix in outfields_prefixes)]
 
     outfields = ",".join(fields + ['CMIULOCAL', 'CMNOMLOCAL'])
 
