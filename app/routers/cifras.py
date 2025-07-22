@@ -1,16 +1,16 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
-from geopandas import read_file, GeoDataFrame
 
 from config import DAI_LAYER, IRL_LAYER
 from utils.gpd_utils import get_layer_data, merge_gdf
-from utils.arcgis_api import fetch_data, get_outfields, get_query_res #temp utils, just fot testing
+from utils.arcgis_api import get_outfields, get_query_res
 from utils.folium_maps import generate_map
 from utils.templates_dir import templates
 from utils.plotly_graphs import generate_bar
 
 Cifras_Router = APIRouter(prefix='/cifras')
 
+#TODO: optimize data declaration(maybe a modularization?)
 DAI_METADATA = DAI_LAYER['metadata']
 DAI_QUERY    = DAI_LAYER['query']
 DAI_PREFIX   = DAI_LAYER['prefixes']
@@ -29,12 +29,13 @@ IRL_DATA = get_layer_data(irl_response)
 
 CIFRAS_DATA = merge_gdf(DAI_DATA, IRL_DATA)
 
+# ----- Routers ----- #
+
 @Cifras_Router.get('/mapas', response_class=HTMLResponse, name='map_cifras')
 def map_cifras(req: Request):
     """
-    Return an HTML template, where the GeoDataFrame info is displayed as a:
+    Returns a HTML template, where the GeoDataFrame info is displayed as a:
     - Folium map
-    - Plotly Bar graph object 
     """
 
     f_map = generate_map(
@@ -46,9 +47,11 @@ def map_cifras(req: Request):
 
     return templates.TemplateResponse('/maps/cifras_map.html', {'request': req, 'map': f_map})
 
-@Cifras_Router.get('/estadisticas', response_class=HTMLResponse)
+@Cifras_Router.get('/estadisticas', response_class=HTMLResponse, name='stats_cifras')
 def stats_cifras(req: Request):
-    return templates.TemplateResponse()
+    f_map = generate_bar(CIFRAS_DATA)
+
+    return templates.TemplateResponse('/stats/cifras_stats.html', {'request': req, 'graph': f_map})
 
 # ----- Routers for Testing Purposes ----- #
 @Cifras_Router.get('/dai', name='get_dai')
