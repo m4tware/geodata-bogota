@@ -1,19 +1,19 @@
 from plotly.graph_objects import Figure, Bar
 
-def generate_bar(dai_df, irl_df):
+def generate_bar(layer_gdf):
     fig = Figure()
 
     fig.add_trace(Bar(
-        x=[dai_df['CMIULOCAL'], dai_df['CMNOMLOCAL']],
-        y=dai_df['CMHP25CONT'],
+        x=[layer_gdf['CMIULOCAL'], layer_gdf['CMNOMLOCAL']],
+        y=layer_gdf['CMHP25CONT'],
         name='Delitos 2025',
         marker_color='darkolivegreen',
         hovertemplate='Localidad: %{x}<br>Delitos: %{y}<extra></extra>'
     ))
 
     fig.add_trace(Bar(
-        x=[irl_df['CMIULOCAL'], irl_df['CMNOMLOCAL']],
-        y=irl_df['CMH25CONT'],
+        x=[layer_gdf['CMIULOCAL'], layer_gdf['CMNOMLOCAL']],
+        y=layer_gdf['CMH25CONT'],
         name='Llamadas 2025',
         marker_color='darkslateblue',
         hovertemplate='Localidad: %{x}<br>Llamadas: %{y}<extra></extra>'

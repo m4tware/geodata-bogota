@@ -38,7 +38,7 @@ def get_outfields(metadata_url, outfields_prefixes):
     fields = [f['name'] for f in meta['fields'] 
             if any(f['name'].startswith(prefix) for prefix in outfields_prefixes)]
 
-    outfields = ",".join(fields + ['CMIULOCAL', 'CMNOMLOCAL'])
+    outfields = ",".join(fields)
 
     return outfields
 
