@@ -7,7 +7,7 @@ DAI_LAYER = {
     'url':      f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0',
     'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0?f=json',
     'query':    f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0/query?',
-    'prefixes':   ['CMHP2', 'CMHPTOTAL']
+    'prefixes':   ['CMIULOCAL', 'CMNOMLOCAL', 'CMHP2', 'CMHPTOTAL']
     }
 
 IRL_LAYER = {
@@ -17,7 +17,17 @@ IRL_LAYER = {
     'url':      f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2',
     'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2?f=json',
     'query':    f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2/query?',
-    'prefixes':   ['CMH2', 'CMHTOTAL']
+    'prefixes':   ['CMIULOCAL', 'CMNOMLOCAL', 'CMH2', 'CMHTOTAL']
+    }
+
+CAI_LAYER = {
+    """
+    Comando de Atención Inmediata - Layer 22       
+    """
+    'url':      f'{ARCGIS_BASE_URL}Tematicos_NR/EquipamientoPMSDSCJ/MapServer/22',
+    'metadata': f'{ARCGIS_BASE_URL}Tematicos_NR/EquipamientoPMSDSCJ/MapServer/22?f=json',
+    'query':    f'{ARCGIS_BASE_URL}Tematicos_NR/EquipamientoPMSDSCJ/MapServer/22/query?',
+    'prefixes':   ['CAIIULOCAL', 'CAIDESCRIP', 'CAITELEFON', 'CAICELECTR', 'CAIDIR_SIT']
     }
 
 """
