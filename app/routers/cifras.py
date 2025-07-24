@@ -6,7 +6,7 @@ from utils.gpd_utils import get_layer_data, merge_gdf
 from utils.arcgis_api import get_outfields, get_query_res
 from utils.folium_maps import generate_map
 from utils.templates_dir import templates
-from utils.plotly_graphs import generate_bar
+#from utils.plotly_graphs import generate_bar #Deprecated
 
 Cifras_Router = APIRouter(prefix='/cifras')
 
@@ -35,25 +35,75 @@ CIFRAS_DATA = merge_gdf(DAI_DATA, IRL_DATA)
 def map_cifras(req: Request):
     """
     Returns a HTML template, where the GeoDataFrame info is displayed as a:
-    - Folium map
+        >>> f_map: Folium interactive map
     """
+    CIFRAS = CIFRAS_DATA[CIFRAS_DATA['CMNOMLOCAL'] != 'Sin Localización']
 
     f_map = generate_map(
         (CIFRAS_DATA, 
         ['CMIULOCAL', 'CMNOMLOCAL', 'CMHP25CONT', 'CMH25CONT'], 
         ['N° Localidad', 'Localidad', 'Hurto a Personas - 2025', 'Llamadas por hurto a Personas - 2025'], 
-        'gray')
+        'blue', 'Cifras')
     )
 
     return templates.TemplateResponse('/maps/cifras_map.html', {'request': req, 'map': f_map})
 
 @Cifras_Router.get('/estadisticas', response_class=HTMLResponse, name='stats_cifras')
 def stats_cifras(req: Request):
-    f_map = generate_bar(CIFRAS_DATA)
+    """
+    Returns a HTML template, where the GeoDataFrame info is displayed as a:
+        >>> table: GeoDataFrame converted into HTML table with specific classes(Bootstrap friendly)
+    TODO: DELETE plotly from Python; migrating now to Chart.JS, using JavaScript
+    """
 
-    return templates.TemplateResponse('/stats/cifras_stats.html', {'request': req, 'graph': f_map})
+    chart_data = {
+        'Localidad': CIFRAS_DATA['CMNOMLOCAL'].tolist(),
+        'N° Localidad': CIFRAS_DATA['CMIULOCAL'].tolist(),
+        'Hurtos 2025': CIFRAS_DATA['CMHP25CONT'].tolist(),
+        'Llamadas 2025': CIFRAS_DATA['CMH25CONT'].tolist()
+    }
+
+    # Calls the GeoDataFrame columns and 
+    # assign a readable alias for each one
+    cols = CIFRAS_DATA.columns
+    aliases = {
+        'CMNOMLOCAL': 'Nombre Localidad',
+        'CMIULOCAL': 'N° Localidad',
+        'CMHP25CONT': 'Hurtos 2025',
+        'CMH25CONT': 'Llamadas 2025',
+    }
+
+    # Renames the GeoDataFrame columns according to its readable aliases
+    CIFRAS = CIFRAS_DATA[cols].rename(columns=aliases)
+
+    table_classes = 'table table-sm table-hover table-striped-columns table-bordered'
+    # Drops the geometry, and unused columns for better table design and interface
+    table = CIFRAS.drop(columns=['geometry', 'CMHPTOTAL', 'CMHTOTAL']).to_html(classes=table_classes, index=False)
+
+    return templates.TemplateResponse('/stats/cifras_stats.html', {'request': req, 'table': table, 'chart_data': chart_data})
 
 # ----- Routers for Testing Purposes ----- #
+@Cifras_Router.get('/gdf_test')
+def stats_cifras(req: Request):
+    """
+    Returns a HTML template, where the GeoDataFrame info is displayed as a:
+        >>> table: GeoDataFrame converted into HTML table with specific classes(Bootstrap friendly)
+    TODO: DELETE plotly from Python; migrating now to Chart.JS, using JavaScript
+    """
+    # Deletes the 'Sin Localización' ; or show also this value?
+    #CIFRAS = CIFRAS_DATA[CIFRAS_DATA['CMNOMLOCAL'] != 'Sin Localización']
+
+    chart_map_data = {
+        'Localidad': CIFRAS_DATA['CMNOMLOCAL'].tolist(),
+        'N° Localidad': CIFRAS_DATA['CMIULOCAL'].tolist(),
+        'Hurtos 2025': CIFRAS_DATA['CMHP25CONT'].tolist(),
+        'Llamadas 2025': CIFRAS_DATA['CMH25CONT'].tolist()
+    }
+
+    print(type(chart_map_data))
+    return chart_map_data
+
+""" 
 @Cifras_Router.get('/dai', name='get_dai')
 def get_dai():
     return fetch_data(dai_response) # displaying fetched raw JSON from http request
@@ -70,3 +120,4 @@ def get_dai(req: Request):
     data = get_layer_data(layer_query_response)
 
     return templates.TemplateResponse('home.html', {'request': req})
+     """
