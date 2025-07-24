@@ -1,3 +1,8 @@
+"""
+MODULE POTENTIALLY TO BE DEPRECATED
+"""
+
+""" 
 from plotly.graph_objects import Figure, Bar
 
 def generate_bar(layer_gdf):
@@ -35,7 +40,8 @@ def generate_bar(layer_gdf):
         "responsive": True
     }
 
-    return fig.to_html(full_html=False, config=cfg)
+    return fig.to_html(full_html=False, config=cfg) 
+"""
 
 # --- Deprecated ---- #
 """
