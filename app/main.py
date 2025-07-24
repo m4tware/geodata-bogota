@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 
 #Router Endpoints
@@ -10,6 +11,8 @@ app = FastAPI(
     title='API GeoData - Bogotá',
     description='Backend de un proyecto abierto a toda la ciudadanía, con fines informativos, sobre los hurtos en las diferentes localidades de Bogotá teniendo en cuenta los puntos de presencia policial distribuidos por la ciudad'
 )
+
+app.mount('/static', StaticFiles(directory='app/static'), name='static')
 
 @app.get('/', include_in_schema=False)
 def root():
