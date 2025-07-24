@@ -7,7 +7,7 @@ DAI_LAYER = {
     'url':      f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0',
     'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0?f=json',
     'query':    f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/0/query?',
-    'prefixes':   ['CMIULOCAL', 'CMNOMLOCAL', 'CMHP2', 'CMHPTOTAL']
+    'prefixes':   ['CMIULOCAL', 'CMNOMLOCAL', 'CMHP25', 'CMHPTOTAL']
     }
 
 IRL_LAYER = {
@@ -17,7 +17,7 @@ IRL_LAYER = {
     'url':      f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2',
     'metadata': f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2?f=json',
     'query':    f'{ARCGIS_BASE_URL}/Tematicos_Pub/CifrasSCJ/MapServer/2/query?',
-    'prefixes':   ['CMIULOCAL', 'CMNOMLOCAL', 'CMH2', 'CMHTOTAL']
+    'prefixes':   ['CMIULOCAL', 'CMNOMLOCAL', 'CMH25', 'CMHTOTAL']
     }
 
 CAI_LAYER = {
