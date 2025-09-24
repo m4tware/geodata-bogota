@@ -20,7 +20,7 @@ def get_layer_data(layer_url):
     """
     return data_to_gdf(layer_url) # from URL to geodataframe → data to be manipulated with gpd 
 
-def merge_gdf(base_gdf, extra_gdf):
+def merge_gdf(base_gdf, extra_gdf, properties):
     """
     Merge two different GeoDataFrames that share common properties such as:
     - ['CMIULOCAL', 'CMNOMLOCAL']: both properties(or ArcGIS fields) share the same values.
@@ -32,7 +32,7 @@ def merge_gdf(base_gdf, extra_gdf):
     returns:
         type: GeoDataFrame
     """
-    merging = base_gdf.merge(extra_gdf, on=['CMIULOCAL', 'CMNOMLOCAL'], how='inner', suffixes=['', '_right'])
+    merging = base_gdf.merge(extra_gdf, on=properties, how='inner', suffixes=['', '_right'])
     merged = merging.drop(columns='geometry_right')
 
     return merged
