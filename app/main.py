@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 
 #Router Endpoints
-from routers.cifras import Cifras_Router
+from routers.cifras import Cifras_Router, Cifras_stats_Router
 from routers.policia import Policia_Router
 from utils.templates_dir import templates
 
@@ -27,4 +27,5 @@ def home(req: Request):
     return templates.TemplateResponse('home.html', {'request': req})
 
 app.include_router(Cifras_Router)
+app.include_router(Cifras_stats_Router)
 app.include_router(Policia_Router)
