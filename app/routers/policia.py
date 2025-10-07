@@ -1,25 +1,34 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 
-from config import CAI_URL, CP_URL, QUERY
+from config import CAI_LAYER
 from utils.gpd_utils import get_layer_data
+from utils.arcgis_api import get_outfields, get_query_res
 from utils.folium_maps import generate_map
 from utils.templates_dir import templates
-from routers.cifras import DAI_DATA
 
 Policia_Router = APIRouter(prefix='/mapas')
 
-CAI_LAYER = f'{CAI_URL}{QUERY}'
-CAI_DATA = get_layer_data(CAI_LAYER)
+CAI_METADATA    = CAI_LAYER['metadata']
+CAI_QUERY       = CAI_LAYER['query']
+CAI_PREFIX      = CAI_LAYER['prefixes']
 
-CP_LAYER = f'{CP_URL}{QUERY}'
-CP_DATA = get_layer_data(CP_LAYER)
+CAI_outfields = get_outfields(CAI_METADATA, CAI_PREFIX)
+CAI_response = get_query_res(CAI_QUERY, CAI_outfields, True)
+CAI_DATA = get_layer_data(CAI_response)
 
-@Policia_Router.get('/policia', response_class=HTMLResponse)
+@Policia_Router.get('/policia')
 def map_policia(req: Request):
+    """
+    Returns a HTML template, where the GeoDataFrame info is displayed as a:
+        >>> f_map: Folium interactive map
+    """
+
     f_map = generate_map(
-        (CAI_DATA, ['CAINOMBRE'], ['Nombre CAI'], 'green', 'Comandos de Atención Inmediata'),
-        (DAI_DATA, ['CMIULOCAL', 'CMNOMLOCAL'], ['Localidad N°', 'Localidad'], 'grey', 'Localidad'),
-        (CP_DATA, ['PCUIULOCAL', 'PCUNOMCAI'], ['Localidad N°', 'Nombre CAI'], 'white', ' Cuadrante de Policia')
+        (CAI_DATA, 
+        ['CAIDESCRIP','CAITELEFON', 'CAIIULOCAL', 'CAICELECTR', 'CAIDIR_SIT'],
+        ['Descripción', 'Teléfono', 'N° Localidad', 'Correo Electrónico', 'Dirección']
+        )
     )
-    return templates.TemplateResponse('policia_map.html', {'request': req, 'map': f_map})
+
+    return templates.TemplateResponse('/maps/policia_map.html', {'request': req, 'map': f_map})
