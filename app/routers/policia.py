@@ -31,4 +31,4 @@ def map_policia(req: Request):
         )
     )
 
-    return templates.TemplateResponse('/maps/policia_map.html', {'request': req, 'map': f_map})
+    return templates.TemplateResponse(name='/maps/policia_map.html', request=req, context={'map': f_map})

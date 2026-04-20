@@ -30,7 +30,7 @@ CIFRAS_DATA = merge_gdf(DAI_DATA, IRL_DATA, ['CMIULOCAL', 'CMNOMLOCAL'])
 
 # ----- Routers ----- #
 
-@Cifras_Router.get('/mapas', response_class=HTMLResponse, name='map_cifras')
+@Cifras_Router.get('/delitos', response_class=HTMLResponse, name='map_cifras')
 def map_cifras(req: Request):
     """
     Returns a HTML template, where the GeoDataFrame info is displayed as a:
@@ -45,7 +45,7 @@ def map_cifras(req: Request):
         )
     )
 
-    return templates.TemplateResponse('/maps/cifras_map.html', {'request': req, 'map': f_map})
+    return templates.TemplateResponse(name='/maps/cifras_map.html', request=req, context={'map': f_map})
 
 Cifras_stats_Router = APIRouter()
 
@@ -80,7 +80,7 @@ def stats_cifras(req: Request):
     # Drops the geometry, and unused columns for data visualization porpuses
     table = CIFRAS.drop(columns=['geometry', 'CMHPTOTAL', 'CMHTOTAL']).to_html(classes=table_classes, index=False)
 
-    return templates.TemplateResponse('/stats/cifras_stats.html', {'request': req, 'table': table, 'chart_data': chart_data})
+    return templates.TemplateResponse(name='/stats/cifras_stats.html', request=req, context={'table': table, 'chart_data': chart_data})
 
 # ----- Routers for Testing Purposes ----- #
 """ 

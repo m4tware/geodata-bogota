@@ -14,7 +14,7 @@ app = FastAPI(
 
 app.mount('/static', StaticFiles(directory='app/static'), name='static')
 
-@app.get('/', include_in_schema=False)
+@app.get('/info', include_in_schema=False)
 def root():
     return {
         'how to': 'Backend & Data',
@@ -22,9 +22,9 @@ def root():
         'logos': 'Proyecto abierto a toda la ciudadanía con fines informativos sobre los hurtos en las diferentes localidades de Bogotá teniendo en cuenta los puntos de presencia policial distribuidos por la ciudad'
     }
 
-@app.get('/home', response_class=HTMLResponse, name='home')
+@app.get('/', response_class=HTMLResponse, name='home')
 def home(req: Request):
-    return templates.TemplateResponse('home.html', {'request': req})
+    return templates.TemplateResponse(name='home.html', request=req)
 
 app.include_router(Cifras_Router)
 app.include_router(Cifras_stats_Router)
