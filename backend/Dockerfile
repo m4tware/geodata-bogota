@@ -1,0 +1,21 @@
+FROM python:3.14-alpine
+
+WORKDIR /app
+
+RUN apk update
+RUN apk add --no-cache \
+    build-base \
+    gcc \
+    g++ \
+    gdal \
+    gdal-dev
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./app .
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

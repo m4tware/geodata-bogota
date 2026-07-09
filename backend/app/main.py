@@ -3,16 +3,16 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 
 #Router Endpoints
-from routers.cifras import Cifras_Router, Cifras_stats_Router
-from routers.policia import Policia_Router
-from utils.templates_dir import templates
+from app.routers.cifras import Cifras_Router, Cifras_stats_Router
+from app.routers.policia import Policia_Router
+from app.utils.templates_dir import templates
 
 app = FastAPI(
     title='API GeoData - Bogotá',
     description='Backend de un proyecto abierto a toda la ciudadanía, con fines informativos, sobre los hurtos en las diferentes localidades de Bogotá teniendo en cuenta los puntos de presencia policial distribuidos por la ciudad'
 )
 
-app.mount('/static', StaticFiles(directory='app/static'), name='static')
+app.mount('/app/static', StaticFiles(directory='app/static'), name='static')
 
 @app.get('/info', include_in_schema=False)
 def root():

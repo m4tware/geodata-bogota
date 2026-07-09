@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 
-from config import DAI_LAYER, IRL_LAYER
-from utils.gpd_utils import get_layer_data, merge_gdf
-from utils.arcgis_api import get_outfields, get_query_res
-from utils.folium_maps import generate_map
-from utils.templates_dir import templates
+from app.config import DAI_LAYER, IRL_LAYER
+from app.utils.gpd_utils import get_layer_data, merge_gdf
+from app.utils.arcgis_api import get_outfields, get_query_res
+from app.utils.folium_maps import generate_map
+from app.utils.templates_dir import templates
 
 Cifras_Router = APIRouter(prefix='/mapas')
 

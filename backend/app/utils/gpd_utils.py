@@ -1,7 +1,7 @@
 from geopandas import read_file
 from functools import lru_cache
 
-from utils.arcgis_api import fetch_data
+from app.utils.arcgis_api import fetch_data
 
 def data_to_gdf(api_data):
     """

@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 
-from config import CAI_LAYER
-from utils.gpd_utils import get_layer_data
-from utils.arcgis_api import get_outfields, get_query_res
-from utils.folium_maps import generate_map
-from utils.templates_dir import templates
+from app.config import CAI_LAYER
+from app.utils.gpd_utils import get_layer_data
+from app.utils.arcgis_api import get_outfields, get_query_res
+from app.utils.folium_maps import generate_map
+from app.utils.templates_dir import templates
 
 Policia_Router = APIRouter(prefix='/mapas')
 
