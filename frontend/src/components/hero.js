@@ -1,4 +1,4 @@
-export const hero = `
+const hero = `
   <section class="position-relative vh-100 d-flex align-items-center justify-content-center text-center text-white" style="background: black;">
     <img src="https://colombiavisible.com/wp-content/uploads/2021/12/shutterstock_599811131.jpg" 
         class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" 
@@ -14,3 +14,5 @@ export const hero = `
     </div>
   </section>
 `
+
+export default hero
