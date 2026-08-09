@@ -20,7 +20,7 @@ def fetch_data(url, req_dataframe_url = None):
             except ValueError as e:
                 raise HTTPException(status_code=502, detail=f'Respuesta inválida del servidor: {str(e)}')
         return url # → Returns Layer URL for further GeoDataFrame conversion with geopandas
-    except Exception.ValueError as e:
+    except Exception as e:
         print(f'Error al obtener los datos:{e}')
 
 def get_outfields(metadata_url, outfields_prefixes):

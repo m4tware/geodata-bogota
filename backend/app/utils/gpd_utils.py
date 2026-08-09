@@ -11,6 +11,7 @@ def data_to_gdf(api_data):
         type: GeoDataFrame
     """
     data = fetch_data(api_data, req_dataframe_url=True)
+    print('data_to_gdf')
     if data: return read_file(data)
 
 @lru_cache()
@@ -18,6 +19,7 @@ def get_layer_data(layer_url):
     """
     Cached GeoDataFrame, avoiding ArcGIS requests overheating
     """
+    print('get_layer_data')
     return data_to_gdf(layer_url) # from URL to geodataframe → data to be manipulated with gpd 
 
 def merge_gdf(base_gdf, extra_gdf, properties):
