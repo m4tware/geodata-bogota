@@ -16,7 +16,8 @@ app = FastAPI(
 
 app.mount('/app/static', StaticFiles(directory='app/static'), name='static')
 
-app.add_middleware(CORSMiddleware, allow_origins='http://localhost:8001')
+allowed = ['http://localhost:8001', 'http://192.168.0.18:8001']
+app.add_middleware(CORSMiddleware, allow_origins=allowed)
 
 @app.get('/info', include_in_schema=False)
 def root():
