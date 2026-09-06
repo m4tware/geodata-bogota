@@ -1,8 +1,10 @@
 services:
-  frontend:
-    build: .
+  backend:
+    build: ./backend
     ports:
-      - "5173:4173"
-    restart: unless-stopped
-    volumes:
-      - ./src
+      - "8000:8000"
+  frontend:
+    build: ./frontend
+    ports:
+      - "8001:8001"
+    # restart: unless-stopped

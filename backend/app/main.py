@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 #Router Endpoints
-from app.routers.cifras import Cifras_Router, api_test#, Cifras_stats_Router
+from app.routers.cifras import Cifras_Router, api_test #, Cifras_stats_Router
 from app.routers.policia import Policia_Router
 from app.utils.templates_dir import templates
 
