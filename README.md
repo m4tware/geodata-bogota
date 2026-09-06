@@ -40,7 +40,7 @@ Ensure both services are running, this in order to enable RESTful communication 
 ### Frontend
 
 - Vite (Vanilla JS)
-- Folium5174
+- Folium
 - Bootsrap CDN
 - Chart.JS CDN
 
