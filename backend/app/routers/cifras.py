@@ -99,3 +99,13 @@ def stats_cifras(req: Request):
     print(type(chart_map_data))
     return chart_map_data
  """
+
+from httpx import AsyncClient
+
+api_test = APIRouter(prefix='/api')
+
+@api_test.get('/cifras-geojson')
+async def get_cifras_geojson():
+    async with AsyncClient() as client:
+        data = await client.get(dai_response)
+        return data.json()

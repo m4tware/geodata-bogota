@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 #Router Endpoints
-from app.routers.cifras import Cifras_Router #, Cifras_stats_Router
+from app.routers.cifras import Cifras_Router, api_test#, Cifras_stats_Router
 from app.routers.policia import Policia_Router
 from app.utils.templates_dir import templates
 
@@ -16,7 +16,7 @@ app = FastAPI(
 
 app.mount('/app/static', StaticFiles(directory='app/static'), name='static')
 
-app.add_middleware(CORSMiddleware, allow_origins='http://localhost:5173')
+app.add_middleware(CORSMiddleware, allow_origins='http://localhost:8001')
 
 @app.get('/info', include_in_schema=False)
 def root():
@@ -31,6 +31,7 @@ def root():
 def home(req: Request):
     return templates.TemplateResponse(name='home.html', request=req)
 
-# app.include_router(Cifras_Router)
+app.include_router(Cifras_Router)
 # app.include_router(Cifras_stats_Router)
+app.include_router(api_test)
 app.include_router(Policia_Router)

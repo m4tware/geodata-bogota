@@ -5,12 +5,15 @@ import navbar from './components/navbar';
 import Router from './routes/Router'
 import config from './routes/config';
 
-import apiFetch from './api/fetch';
+import {health, cifrasGeojson} from './api/fetch';
 
 document.querySelector('#navbar').innerHTML = `${navbar}`
 document.querySelector('#app').innerHTML = config['/'].view
 document.title = config['/'].title
 
-apiFetch()
+// both funcs will be executed on startup, see console to
+// check API communication:
+health().then(api => console.log(api))
+cifrasGeojson().then(api => console.log(api))
 
 document.addEventListener('DOMContentLoaded', Router.init())

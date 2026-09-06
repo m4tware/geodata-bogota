@@ -1,12 +1,30 @@
-async function apiFetch() {
-    const url = ('http://localhost:8000/mapas/api-test')
+const api = 'http://localhost:8000'
+
+export async function apiFetch() {
+    const url = (`${api}/api/cifras-geojson`)
     try {
         const req = await fetch(url)
-        const res = await req.json()
-        console.log(res)
+        return req.json()
     } catch{
-        console.error('unu')
+        console.error('no response')
     }
 }
 
-export default apiFetch
+
+export const health = async () => {
+    try {
+        const req = await fetch(`${api}/info`)
+        return req.json()
+    } catch {
+        console.error('no response')
+    }
+}
+
+export const cifrasGeojson = async () => {
+    try {
+        const req = await fetch(`${api}/api/cifras-geojson`)
+        return req.json()
+    } catch {
+        console.error('no response')
+    }
+}

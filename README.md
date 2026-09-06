@@ -1,7 +1,8 @@
 ## ON DEVELOPMENT: 
 
-- New approach. This commit has only [/backend](./backend/) working(not fully but acceptable). Almost same as the previous commit.
-- Frontend just installed, serving just an static homepage
+- New approach:
+    - Normal Functioning of [/backend](./backend/):
+    - [/frontend](./frontend/) with vanilla JS routing and backend API calls
 
 # FullStack Web App – ArcGIS API geodata Integration & Visualization
 
@@ -10,11 +11,15 @@ using official geodata from ArcGIS API service.
 
 ## Technologies
 
-- Python
-    - pip, venv
+- Python 3.14
+    - pip, venv, uv
 - Vite
+- Docker
+    - docker compose
 
 ## Stack
+
+Ensure both services are running, this in order to enable RESTful communication between them
 
 ### Backend
 
@@ -22,9 +27,27 @@ using official geodata from ArcGIS API service.
 - GeoPandas
 - Requests
 
+#### How to run:
+
+- In your local machine, go to [/backend](./backend/)
+- Create a virtual env (Python 3.14): using python-venv or uv
+- Activate the venv
+- Once the venv running, install the [requirements.txt](./backend/requirements.txt)
+- Once installed, execute:
+    - $ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+- Using your browser, access to: [http://localhost:8000](http://localhost:8000)
+
 ### Frontend
 
 - Vite (Vanilla JS)
-- Folium
+- Folium5174
 - Bootsrap CDN
 - Chart.JS CDN
+
+#### How to run:
+
+- In your local machine, go to [/frontend](./frontend/)
+- Using npm:
+    - $ npm run dev --port 8001
+- Or if pnpm is preferred:
+    - pn run dev --port 8001
