@@ -34,7 +34,7 @@ Ensure both services are running, this in order to enable RESTful communication 
 - Activate the venv
 - Once the venv running, install the [requirements.txt](./backend/requirements.txt)
 - Once installed, execute:
-    - $ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    - `uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload`
 - Using your browser, access to: [http://localhost:8000](http://localhost:8000)
 
 ### Frontend
@@ -48,6 +48,6 @@ Ensure both services are running, this in order to enable RESTful communication 
 
 - In your local machine, go to [/frontend](./frontend/)
 - Using npm:
-    - $ npm run dev --port 8001
+    - `npm run dev --port 8001`
 - Or if pnpm is preferred:
-    - pn run dev --port 8001
+    - `pn run dev --port 8001`
