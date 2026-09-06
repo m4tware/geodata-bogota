@@ -25,7 +25,7 @@ Ensure both services are running, this in order to enable RESTful communication 
 
 - FastAPI
 - GeoPandas
-- Requests
+- Requests / httpx
 
 #### How to run:
 
@@ -41,7 +41,7 @@ Ensure both services are running, this in order to enable RESTful communication 
 
 - Vite (Vanilla JS)
 - Folium
-- Bootsrap CDN
+- Bootstrap CDN
 - Chart.JS CDN
 
 #### How to run:
