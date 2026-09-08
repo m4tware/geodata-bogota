@@ -1,3 +1,7 @@
+# Desired System:
+
+![Architecture](public/arq_geodata.png)
+
 ## ON DEVELOPMENT: 
 
 - New approach:
