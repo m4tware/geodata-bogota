@@ -55,3 +55,4 @@ Ensure both services are running, this in order to enable RESTful communication 
     - `npm run dev --port 8001`
 - Or if pnpm is preferred:
     - `pn run dev --port 8001`
+- Using your browser, access to: [http://localhost:8001](http://localhost:8001)
