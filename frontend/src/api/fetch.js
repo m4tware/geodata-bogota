@@ -22,7 +22,8 @@ export const health = async () => {
 
 export const cifrasGeojson = async () => {
     try {
-        const req = await fetch(`${api}/api/cifras-geojson`)
+        const router = `${api}/api/cifras/delitos-alto-impacto/geojson`
+        const req = await fetch(router)
         return req.json()
     } catch {
         console.error('no response')
