@@ -18,17 +18,8 @@ app = FastAPI(
 
 app.mount('/app/static', StaticFiles(directory='app/static'), name='static')
 
-allowed = ['http://localhost:8001', 'http://192.168.0.18:8001']
+allowed = ['http://localhost']
 app.add_middleware(CORSMiddleware, allow_origins=allowed)
-
-@app.get('/info', include_in_schema=False)
-def root():
-    return {
-        'how to': 'Backend & Data',
-        'dev': '@m4tware',
-        'logos': 'Proyecto abierto a toda la ciudadanía con fines informativos sobre los hurtos en las diferentes '
-                'localidades de Bogotá teniendo en cuenta los puntos de presencia policial distribuidos por la ciudad'
-    }
 
 @app.get('/', response_class=HTMLResponse, name='home')
 def home(req: Request):
