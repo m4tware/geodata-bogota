@@ -3,6 +3,12 @@ from app.api.v1 import cifras
 
 base = APIRouter(prefix='/api')
 
+@base.get('/health', include_in_schema=False)
+def health():
+    return {
+        'health': 'OK'
+    }
+
 @base.get('/info', include_in_schema=False)
 def root():
     return {

@@ -13,7 +13,7 @@ export async function apiFetch() {
 
 export const health = async () => {
     try {
-        const req = await fetch(`${api}/info`)
+        const req = await fetch(`${api}/health`)
         return req.json()
     } catch {
         console.error('no response')
