@@ -5,7 +5,7 @@
 ## ON DEVELOPMENT: 
 
 - New approach:
-    - Access both services using nginx reverse-proxy, building and running the services from docker compose, then using your browser, access to: [http://localhost](http://localhost). 
+    - Access both services using nginx reverse-proxy by just building and running the services from docker compose, then using your browser, access to: [http://localhost](http://localhost). 
     With this approach, you can access both services using just one short URL
 
 # FullStack Web App – ArcGIS API geodata Integration & Visualization
