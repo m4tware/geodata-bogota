@@ -5,8 +5,8 @@
 ## ON DEVELOPMENT: 
 
 - New approach:
-    - Normal Functioning of [/backend](./backend/):
-    - [/frontend](./frontend/) with vanilla JS routing and backend API calls
+    - Access both services using nginx reverse-proxy, building and running the services from docker compose, then using your browser, access to: [http://localhost](http://localhost). 
+    With this approach, you can access both services using just one short URL
 
 # FullStack Web App – ArcGIS API geodata Integration & Visualization
 
@@ -18,8 +18,11 @@ using official geodata from ArcGIS API service.
 - Python 3.14
     - pip, venv, uv
 - Vite
+    - Native Javascript
 - Docker
     - docker compose
+- Reverse Proxy
+    - nginx
 
 ## Stack
 
@@ -31,16 +34,6 @@ Ensure both services are running, this in order to enable RESTful communication 
 - GeoPandas
 - Requests / httpx
 
-#### How to run:
-
-- In your local machine, go to [/backend](./backend/)
-- Create a virtual env (Python 3.14): using python-venv or uv
-- Activate the venv
-- Once the venv running, install the [requirements.txt](./backend/requirements.txt)
-- Once installed, execute:
-    - `uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload`
-- Using your browser, access to: [http://localhost:8000](http://localhost:8000)
-
 ### Frontend
 
 - Vite (Vanilla JS)
@@ -50,9 +43,7 @@ Ensure both services are running, this in order to enable RESTful communication 
 
 #### How to run:
 
-- In your local machine, go to [/frontend](./frontend/)
-- Using npm:
-    - `npm run dev --port 8001`
-- Or if pnpm is preferred:
-    - `pn run dev --port 8001`
-- Using your browser, access to: [http://localhost:8001](http://localhost:8001)
+- At the root directory of the project, execute:
+    - `docker compose up --build`
+- Using your browser, access to: [http://localhost](http://localhost)
+- Can change network configs inside [docker-compose](docker-compose.yaml), and [nginx](./nginx/nginx.conf) files
